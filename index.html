@@ -1,37 +1,517 @@
+l
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Landing Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Mohd Miqdad | System Administrator Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+
+  <style>
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-slideIn {
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    pre::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+      background-color: #d1d5db;
+      border-radius: 4px;
+    }
+
+    pre::-webkit-scrollbar-track {
+      background-color: #f3f4f6;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .animate-slideIn {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-gradient-custom {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
-<body>
-    <div class="container">
-        <h1>Hello, GitHub Actions!</h1>
-        <p>Welcome to my simple landing page deployed with GitHub Actions!</p>
-        <p>Roadmap to DevOps Engineer!</p>
+
+<body class="bg-gray-50 font-sans text-gray-800 antialiased">
+
+  <!-- Header -->
+  <header class="bg-gradient-custom text-white py-12 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold animate-fadeIn">Mohd Miqdad</h1>
+    <p class="mt-4 text-xl md:text-2xl opacity-90 animate-fadeIn" style="animation-delay: 0.2s;">
+      System Administrator | Love Explore DevOps Tools | IT Infrastructure | Troubleshooting
+    </p>
+    <button id="cta-btn"
+      class="mt-6 px-8 py-3 bg-white text-blue-600 font-semibold rounded-full hover:bg-blue-100 transition animate-fadeIn"
+      style="animation-delay: 0.4s;">
+      Explore My Work
+    </button>
+  </header>
+
+  <!-- About Me -->
+  <section id="about-me" class="bg-white py-8">
+    <div class="max-w-5xl mx-auto px-8 py-8">
+      <!-- Social Links -->
+      <div class="text-center mb-10 animate-fadeIn flex justify-center space-x-4">
+        <!-- LinkedIn Button -->
+        <div>
+          <a href="https://www.linkedin.com/in/mohd-miqdad/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-4 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+        <!-- GitHub Button -->
+        <div>
+          <a href="https://github.com/dad1755" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-4 bg-[#0D1117] text-white text-sm font-medium rounded-lg hover:bg-[#1F2A44] transition duration-300 ease-in-out">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.164 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.698-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.647.349-1.087.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.307.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.479C19.137 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 animate-fadeIn">About Me</h2>
+      <p class="text-lg leading-relaxed text-gray-600 mx-auto animate-fadeIn" style="animation-delay: 0.2s;">
+        I’m a dedicated IT professional with extensive experience in system administration, server management, and
+        network operations. I specialize in deploying and maintaining enterprise solutions such as GLPI, Nagios, and
+        Wazuh, ensuring secure and efficient operations across both connected and offline environments. My strengths lie
+        in optimizing infrastructure, automating processes, and delivering hands-on technical support to ensure business
+        continuity.
+      </p>
+      <p class="text-lg leading-relaxed text-gray-600 mx-auto animate-fadeIn" style="animation-delay: 0.2s;">
+        Currently, I’m focused on transitioning into a Cloud Engineer role. I’m actively upskilling through self-paced
+        learning, gaining exposure to modern DevOps tools and practices—including Ansible, Kubernetes, Docker, Jenkins,
+        and more—to build scalable, resilient cloud-native solutions.
+      </p>
     </div>
+  </section>
+
+  <section id="projects" class="bg-white py-8" x-data="projectPagination()">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Key Projects</h2>
+
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <template x-for="(project, index) in paginatedProjects" :key="index">
+          <div x-data="{ open: false }" @click="open = !open" @keydown.enter="open = !open"
+            @keydown.space="open = !open" role="button" tabindex="0" :class="{
+              'bg-white p-4 rounded-lg shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105 cursor-pointer animate-slideIn': true,
+              'w-full': open,
+              'w-[90%]': !open
+            }" :style="'animation-delay: ' + (0.2 * index) + 's'" :aria-expanded="open"
+            :aria-controls="'project-' + index + '-description'">
+            <div class="flex items-start justify-between mb-2">
+              <span
+                class="inline-flex items-center px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded-full"
+                x-text="project.tag"></span>
+              <svg :class="{ 'rotate-180': open }" class="w-5 h-5 text-gray-600 transition-transform duration-300"
+                fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2" x-text="project.title"></h3>
+            <div x-show="open" x-transition :id="'project-' + index + '-description'"
+              class="mt-2 bg-white border border-gray-300 rounded-md p-4 shadow-inner text-sm text-gray-600">
+              <template x-if="project.code">
+                <pre
+                  class="language-python font-mono whitespace-pre-wrap overflow-x-auto"><code x-text="project.code"></code></pre>
+              </template>
+              <template x-if="!project.code">
+                <p class="text-gray-600" x-text="project.description"></p>
+              </template>
+            </div>
+            <div class="mt-2 text-gray-500 text-xs flex items-center">
+              <span class="mr-1">⏳</span>
+              <span x-text="project.stats"></span> Started
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="mt-10 flex justify-center items-center space-x-4">
+        <button @click="prevPage" :disabled="currentPage === 0"
+          class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50">
+          Previous
+        </button>
+        <span class="text-sm text-gray-700">
+          Page <span x-text="currentPage + 1"></span> of <span x-text="totalPages"></span>
+        </span>
+        <button @click="nextPage" :disabled="currentPage >= totalPages - 1"
+          x-bind:class="{ 'opacity-50 cursor-not-allowed': currentPage >= totalPages - 1, 'bg-gray-200 hover:bg-gray-300': currentPage < totalPages - 1 }"
+          class="px-4 py-2 rounded">
+          Next
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Prism.highlightAll();
+    });
+
+    function projectPagination() {
+      return {
+        currentPage: 0,
+        itemsPerPage: 9,
+        projects: [
+          {
+            tag: 'CI/CD',
+            title: 'Portfolio Website with CI/CD',
+            description: 'Designed and developed this portfolio website using HTML, Tailwind CSS, and JavaScript, with content generated via Grok.com. Hosted on a GitHub repository with Jenkins for automated CI/CD, enabling seamless updates and deployment to a production server.',
+            stats: '1,500'
+          },
+          {
+            tag: 'Deployment',
+            title: 'GLPI Deployment on Docker',
+            description: 'Containerized GLPI for asset management, streamlining deployment and scalability for enterprise use.',
+            stats: '800'
+          },
+          {
+            tag: 'Monitoring',
+            title: 'Nagios Server Monitoring',
+            description: 'Implemented Nagios to monitor 147 production servers, ensuring high availability and performance.',
+            stats: '600'
+          },
+          {
+            tag: 'Scripting - Self Pace',
+            title: 'EC2 Instance Check',
+            description: 'A Python script to check the status of EC2 instances using AWS boto3, saving results to a timestamped file.',
+            code: `#!/usr/bin/env python3
+import os
+import boto3
+from datetime import datetime
+
+with open('instance_ids.txt', 'r') as file:
+  instance_ids = [line.strip('"\\n') for line in file]
+
+ec2 = boto3.client('ec2')
+current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+output_dir = "ec2-status"
+os.makedirs(output_dir, exist_ok=True)
+output_file_path = os.path.join(output_dir, f"ec2_status_{current_time}.txt")
+response = ec2.describe_instances(InstanceIds=instance_ids)
+
+with open(output_file_path, 'w') as output_file:
+  for reservation in response['Reservations']:
+      for instance in reservation['Instances']:
+          instance_id = instance['InstanceId']
+          state = instance['State']['Name']
+          name = "N/A"
+          if 'Tags' in instance:
+              for tag in instance['Tags']:
+                  if tag['Key'] == 'Name':
+                      name = tag['Value']
+                      break
+          output_file.write(f"Instance {instance_id} ({name}) is {state}\\n")
+
+print(f"[✓] EC2 status written to: {output_file_path}")`,
+            stats: '200'
+          },
+          {
+            tag: 'Deployment',
+            title: 'Wazuh SIEM Implementation',
+            description: 'Deployed Wazuh for log analysis and intrusion detection, enhancing security monitoring capabilities.',
+            stats: '600'
+          },
+          {
+            tag: 'System Development',
+            title: 'Expense Tracking System',
+            description: 'Developed a C#/MySQL-based system for a construction firm to track project expenses efficiently.',
+            stats: '600'
+          },
+          {
+            tag: 'Deployment',
+            title: 'E-commerce Website with AWS Lightsail',
+            description: 'Built a scalable e-commerce website using a prebuilt WordPress instance on AWS Lightsail',
+            stats: '600'
+          },
+          {
+            tag: 'Monitoring',
+            title: 'Server Performance Stat',
+            description: 'Developed a CLI tool to monitor server performance metrics, including CPU, memory, and disk usage. Export available in CSV/ JSON.',
+            stats: '600'
+          },
+          {
+            tag: 'CLI',
+            title: 'Nginx Log Analyser',
+            description: 'Created a CLI tool to parse and analyze Nginx logs, providing insights into traffic patterns and errors.',
+            stats: '600'
+          },
+          {
+            tag: 'CLI',
+            title: 'Log Archive Tool',
+            description: ' Built a CLI tool to compress and archive log files, optimizing storage and retrieval.',
+            stats: '600'
+          },
+          {
+            tag: 'CI/CD',
+            title: 'rsync Update',
+            description: '  Implemented a CI/CD pipeline using rsync to synchronize and update files on a remote server.',
+            stats: '600'
+          },
+          {
+            tag: 'CI/CD',
+            title: 'GitHub Pages',
+            description: '   Automated deployment of static sites to GitHub Pages using CI/CD workflows.',
+            stats: '600'
+          },
+          {
+            tag: 'DNS',
+            title: 'DNS Basic Setup',
+            description: ' Configured DNS records for domain management, including A, CNAME, and MX records.',
+            stats: '600'
+          },
+          {
+            tag: 'Monitoring',
+            title: 'NetData',
+            description: 'Set up NetData for real-time system monitoring, visualizing performance metrics.',
+            stats: '600'
+          },
+          {
+            tag: 'Deployment',
+            title: 'Node.js + Ansible',
+            description: 'Automated deployment of a Node.js server using Ansible playbooks for configuration management.',
+            stats: '600'
+          },
+          {
+            tag: 'Deployment',
+            title: 'Drupal + Ansible',
+            description: 'Deployed a Drupal server with Ansible, ensuring consistent and repeatable setup.',
+            stats: '600'
+          }
+        ],
+
+        get totalPages() {
+          const pages = Math.ceil(this.projects.length / this.itemsPerPage);
+          console.log('Total pages:', pages);
+          return pages;
+        },
+
+        get paginatedProjects() {
+          const start = this.currentPage * this.itemsPerPage;
+          const end = start + this.itemsPerPage;
+          console.log('Paginating: currentPage:', this.currentPage, 'start:', start, 'end:', end);
+          return this.projects.slice(start, end);
+        },
+
+        nextPage() {
+          console.log('Next page clicked, currentPage:', this.currentPage, 'totalPages:', this.totalPages);
+          if (this.currentPage < this.totalPages - 1) {
+            this.currentPage++;
+            this.$data.currentPage = this.currentPage;
+          }
+        },
+
+        prevPage() {
+          console.log('Previous page clicked, currentPage:', this.currentPage);
+          if (this.currentPage > 0) {
+            this.currentPage--;
+            this.$data.currentPage = this.currentPage;
+          }
+        }
+      };
+    }
+  </script>
+
+  <!-- Skills -->
+  <section id="skills" class="bg-white py-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 animate-fadeIn">Technical Skills</h2>
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.2s;">
+        <h3 class="text-xl font-semibold mb-3">Platforms & Systems</h3>
+        <p class="text-gray-600">Linux, Wintel, VMware ESX, Kubernetes, Docker</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.4s;">
+        <h3 class="text-xl font-semibold mb-3">Monitoring & Tools</h3>
+        <p class="text-gray-600">Nagios, Wazuh, GLPI, Cockpit, Ansible</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.6s;">
+        <h3 class="text-xl font-semibold mb-3">Networking</h3>
+        <p class="text-gray-600">TCP/IP, Subnetting, VLAN</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.8s;">
+        <h3 class="text-xl font-semibold mb-3">Programming</h3>
+        <p class="text-gray-600">C#, MySQL, Python, Bash</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 1.0s;">
+        <h3 class="text-xl font-semibold mb-3">Core Competencies</h3>
+        <p class="text-gray-600">Troubleshooting, Technical Documentation, System Optimization</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="max-w-5xl mx-auto py-8 px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 animate-fadeIn">Professional Experience</h2>
+    <div class="space-y-8">
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.2s;">
+        <h3 class="text-xl font-semibold mb-2">Technical Engineer</h3>
+        <ul class="list-disc pl-5 text-gray-600">
+          <li>Led deployment of GLPI and Nagios, managing over 2,500 assets and monitoring 147 production servers.</li>
+          <li>Containerized GLPI with Docker, reducing deployment time by 50%.</li>
+          <li>Built internal lab using Cockpit on Red Hat Linux to simulate recovery and infrastructure scenarios.</li>
+          <li>Implemented Wazuh (SIEM) for log analysis and intrusion detection.</li>
+          <li>Trained IT teams, ensuring smooth project handovers and reduced escalations.</li>
+        </ul>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.4s;">
+        <h3 class="text-xl font-semibold mb-2">Freelance Software Developer</h3>
+        <ul class="list-disc pl-5 text-gray-600">
+          <li>Developed a custom C#/MySQL expense tracking system for a construction firm.</li>
+          <li>Completed certifications in Networking, Python, Linux, and Cybersecurity.</li>
+          <li>Pursued part-time BSc in IT while delivering freelance tech solutions.</li>
+        </ul>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.6s;">
+        <h3 class="text-xl font-semibold mb-2">Infrastructure Engineer</h3>
+        <ul class="list-disc pl-5 text-gray-600">
+          <li>Managed server and network infrastructure across Linux, Windows, and VMware environments.</li>
+          <li>Enhanced network performance by optimizing TCP/IP, VLAN, DNS, and DHCP configurations.</li>
+          <li>Created SOPs and trained clients, reducing setup time and support tickets.</li>
+        </ul>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-scale animate-slideIn" style="animation-delay: 0.8s;">
+        <h3 class="text-xl font-semibold mb-2">Junior System & Network Technician</h3>
+        <ul class="list-disc pl-5 text-gray-600">
+          <li>Supported hospital IT systems, designing LAN/Wi-Fi for over 300 staff.</li>
+          <li>Resolved 90% of server issues, minimizing hardware escalations.</li>
+          <li>Documented network setups and trained IT staff, reducing vendor dependency.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="max-w-5xl mx-auto py-8 px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 animate-fadeIn">Certifications</h2>
+    <ul class="space-y-4 max-w-3xl mx-auto animate-fadeIn" style="animation-delay: 0.2s;">
+      <li class="bg-gray-50 p-4 rounded-lg shadow-md hover-scale">Network Level 4 (Jabatan Pembangunan Kemahiran)</li>
+      <li class="bg-gray-50 p-4 rounded-lg shadow-md hover-scale">Coursera: Networking</li>
+      <li class="bg-gray-50 p-4 rounded-lg shadow-md hover-scale">Coursera: Python</li>
+      <li class="bg-gray-50 p-4 rounded-lg shadow-md hover-scale">Coursera: Linux</li>
+      <li class="bg-gray-50 p-4 rounded-lg shadow-md hover-scale">Coursera: Cybersecurity</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-gradient-custom text-white py-8 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn">Get in Touch</h2>
+    <p class="text-lg max-w-2xl mx-auto mb-6 animate-fadeIn" style="animation-delay: 0.2s;">
+      Interested in collaborating or discussing opportunities? Feel free to reach out!
+    </p>
+    <div class="flex justify-center space-x-6">
+      <a href="mailto:dad1755@gmail.com" class="text-white hover:text-blue-200 transition animate-fadeIn"
+        style="animation-delay: 0.4s;">
+        <svg class="w-6 h-6 inline" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+        </svg>
+        dad1755@gmail.com
+      </a>
+      <a href="tel:+60109409406" class="text-white hover:text-blue-200 transition animate-fadeIn"
+        style="animation-delay: 0.6s;">
+        <svg class="w-6 h-6 inline" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+          </path>
+        </svg>
+        +6010-9409406
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 text-center">
+    <p class="animate-fadeIn">© 2025 Mohd Miqdad. Crafted with passion for technology.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for CTA button
+    document.getElementById('cta-btn').addEventListener('click', () => {
+      document.getElementById('about-me').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Intersection Observer for animations
+    const elements = document.querySelectorAll('.animate-fadeIn, .animate-slideIn');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
 </body>
+
 </html>
