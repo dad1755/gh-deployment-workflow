@@ -157,7 +157,7 @@ l
   <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Key Projects</h2>
 
   <div class="max-w-5xl mx-auto px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
       <template x-for="(project, index) in paginatedProjects" :key="index">
         <div x-data="{ open: false }" @click="open = !open" @keydown.enter="open = !open"
           @keydown.space="open = !open" role="button" tabindex="0" :class="{
@@ -322,7 +322,7 @@ l
 
     Alpine.data('projectPagination', () => ({
       currentPage: 0,
-      itemsPerPage: 6,
+      itemsPerPage: 6, // Changed to 6 for 2x3 grid
       projects: [],
 
       async init() {
