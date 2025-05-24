@@ -142,4 +142,4 @@ print(f"[✓] EC2 status written to: {output_file_path}")`,
             description: 'Deployed a Drupal server with Ansible, ensuring consistent and repeatable setup.',
             stats: '600'
           }
-        ],
+        ]
