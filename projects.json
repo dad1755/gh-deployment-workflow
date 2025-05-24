@@ -19,5 +19,12 @@
     "description": "A new project added for testing.",
     "stats": "500",
     "code": null
+  },
+  {
+    "tag": "Test",
+    "title": "Manual Upload Test",
+    "description": "Testing manual upload.",
+    "stats": "100",
+    "code": null
   }
 ]
