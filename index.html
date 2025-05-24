@@ -211,57 +211,46 @@ l
     </div>
   </section>
 
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Prism.highlightAll();
-    });
+<script>
+  document.addEventListener('alpine:init', () => {
+    Prism.highlightAll();
+  });
 
-    function projectPagination() {
-return {
-    currentPage: 0,
-    itemsPerPage: 9,
-    projects: [],
-    async init() {
-      try {
-        const response = await fetch('projects.json');
-        if (!response.ok) throw new Error('Failed to fetch projects');
-        this.projects = await response.json();
-      } catch (error) {
-        console.error('Error loading projects:', error);
-      }
-    },
-
-        get totalPages() {
-          const pages = Math.ceil(this.projects.length / this.itemsPerPage);
-          console.log('Total pages:', pages);
-          return pages;
-        },
-
-        get paginatedProjects() {
-          const start = this.currentPage * this.itemsPerPage;
-          const end = start + this.itemsPerPage;
-          console.log('Paginating: currentPage:', this.currentPage, 'start:', start, 'end:', end);
-          return this.projects.slice(start, end);
-        },
-
-        nextPage() {
-          console.log('Next page clicked, currentPage:', this.currentPage, 'totalPages:', this.totalPages);
-          if (this.currentPage < this.totalPages - 1) {
-            this.currentPage++;
-            this.$data.currentPage = this.currentPage;
-          }
-        },
-
-        prevPage() {
-          console.log('Previous page clicked, currentPage:', this.currentPage);
-          if (this.currentPage > 0) {
-            this.currentPage--;
-            this.$data.currentPage = this.currentPage;
-          }
+  function projectPagination() {
+    return {
+      currentPage: 0,
+      itemsPerPage: 9,
+      projects: [],
+      async init() {
+        try {
+          const response = await fetch('projects.json');
+          if (!response.ok) throw new Error('Failed to fetch projects');
+          this.projects = await response.json();
+        } catch (error) {
+          console.error('Error loading projects:', error);
         }
-      };
-    }
-  </script>
+      },
+      get totalPages() {
+        return Math.ceil(this.projects.length / this.itemsPerPage);
+      },
+      get paginatedProjects() {
+        const start = this.currentPage * this.itemsPerPage;
+        const end = start + this.itemsPerPage;
+        return this.projects.slice(start, end);
+      },
+      nextPage() {
+        if (this.currentPage < this.totalPages - 1) {
+          this.currentPage++;
+        }
+      },
+      prevPage() {
+        if (this.currentPage > 0) {
+          this.currentPage--;
+        }
+      }
+    };
+  }
+</script>
 
   <!-- Skills -->
   <section id="skills" class="bg-white py-16">
