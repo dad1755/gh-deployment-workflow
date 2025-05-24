@@ -217,154 +217,19 @@ l
     });
 
     function projectPagination() {
-      return {
-        currentPage: 0,
-        itemsPerPage: 9,
-        projects: [
-          {
-            tag: 'Monitoring',
-            title: 'Prometheus & Grafana',
-            description: 'Deploy Prometheus and Grafana for system monitoring on 3 VM via Cockpit.',
-            stats: '1,500'
-          },
-          {
-            tag: 'CI/CD',
-            title: 'Portfolio Website with CI/CD',
-            description: 'Designed and developed this portfolio website using HTML, Tailwind CSS, and JavaScript, with content generated via Grok.com. Hosted on a GitHub repository with Jenkins for automated CI/CD, enabling seamless updates and deployment to a production server.',
-            stats: '1,500'
-          },
-          {
-            tag: 'Deployment',
-            title: 'GLPI Deployment on Docker',
-            description: 'Containerized GLPI for asset management, streamlining deployment and scalability for enterprise use.',
-            stats: '800'
-          },
-          {
-            tag: 'Monitoring',
-            title: 'Nagios Server Monitoring',
-            description: 'Implemented Nagios to monitor 147 production servers, ensuring high availability and performance.',
-            stats: '600'
-          },
-          {
-            tag: 'Deployment',
-            title: 'Install Fedora-Server from kick start',
-            description: 'Automates Fedora VM installation with predefined settings, using Kickstart for unattended setup, configuring disk, network, and console.',
-            stats: '800'
-          },
-          {
-            tag: 'Scripting - Self Pace',
-            title: 'EC2 Instance Check',
-            description: 'A Python script to check the status of EC2 instances using AWS boto3, saving results to a timestamped file.',
-            code: `#!/usr/bin/env python3
-import os
-import boto3
-from datetime import datetime
-
-with open('instance_ids.txt', 'r') as file:
-  instance_ids = [line.strip('"\\n') for line in file]
-
-ec2 = boto3.client('ec2')
-current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-output_dir = "ec2-status"
-os.makedirs(output_dir, exist_ok=True)
-output_file_path = os.path.join(output_dir, f"ec2_status_{current_time}.txt")
-response = ec2.describe_instances(InstanceIds=instance_ids)
-
-with open(output_file_path, 'w') as output_file:
-  for reservation in response['Reservations']:
-      for instance in reservation['Instances']:
-          instance_id = instance['InstanceId']
-          state = instance['State']['Name']
-          name = "N/A"
-          if 'Tags' in instance:
-              for tag in instance['Tags']:
-                  if tag['Key'] == 'Name':
-                      name = tag['Value']
-                      break
-          output_file.write(f"Instance {instance_id} ({name}) is {state}\\n")
-
-print(f"[✓] EC2 status written to: {output_file_path}")`,
-            stats: '200'
-          },
-          {
-            tag: 'Deployment',
-            title: 'Kubernetes',
-            description: 'Deployed Kubernetes on Fedora machine. https://github.com/dad1755/k8sonfedora ',
-            stats: '600'
-          },
-          {
-            tag: 'Deployment',
-            title: 'Wazuh SIEM Implementation',
-            description: 'Deployed Wazuh for log analysis and intrusion detection, enhancing security monitoring capabilities.',
-            stats: '600'
-          },
-          {
-            tag: 'System Development',
-            title: 'Expense Tracking System',
-            description: 'Developed a C#/MySQL-based system for a construction firm to track project expenses efficiently.',
-            stats: '600'
-          },
-          {
-            tag: 'Deployment',
-            title: 'E-commerce Website with AWS Lightsail',
-            description: 'Built a scalable e-commerce website using a prebuilt WordPress instance on AWS Lightsail',
-            stats: '600'
-          },
-          {
-            tag: 'Monitoring',
-            title: 'Server Performance Stat',
-            description: 'Developed a CLI tool to monitor server performance metrics, including CPU, memory, and disk usage. Export available in CSV/ JSON.',
-            stats: '600'
-          },
-          {
-            tag: 'CLI',
-            title: 'Nginx Log Analyser',
-            description: 'Created a CLI tool to parse and analyze Nginx logs, providing insights into traffic patterns and errors.',
-            stats: '600'
-          },
-          {
-            tag: 'CLI',
-            title: 'Log Archive Tool',
-            description: ' Built a CLI tool to compress and archive log files, optimizing storage and retrieval.',
-            stats: '600'
-          },
-          {
-            tag: 'CI/CD',
-            title: 'rsync Update',
-            description: '  Implemented a CI/CD pipeline using rsync to synchronize and update files on a remote server.',
-            stats: '600'
-          },
-          {
-            tag: 'CI/CD',
-            title: 'GitHub Pages',
-            description: '   Automated deployment of static sites to GitHub Pages using CI/CD workflows.',
-            stats: '600'
-          },
-          {
-            tag: 'DNS',
-            title: 'DNS Basic Setup',
-            description: ' Configured DNS records for domain management, including A, CNAME, and MX records.',
-            stats: '600'
-          },
-          {
-            tag: 'Monitoring',
-            title: 'NetData',
-            description: 'Set up NetData for real-time system monitoring, visualizing performance metrics.',
-            stats: '600'
-          },
-          {
-            tag: 'Deployment',
-            title: 'Node.js + Ansible',
-            description: 'Automated deployment of a Node.js server using Ansible playbooks for configuration management.',
-            stats: '600'
-          },
-          {
-            tag: 'Deployment',
-            title: 'Drupal + Ansible',
-            description: 'Deployed a Drupal server with Ansible, ensuring consistent and repeatable setup.',
-            stats: '600'
-          }
-        ],
+return {
+    currentPage: 0,
+    itemsPerPage: 9,
+    projects: [],
+    async init() {
+      try {
+        const response = await fetch('projects.json');
+        if (!response.ok) throw new Error('Failed to fetch projects');
+        this.projects = await response.json();
+      } catch (error) {
+        console.error('Error loading projects:', error);
+      }
+    },
 
         get totalPages() {
           const pages = Math.ceil(this.projects.length / this.itemsPerPage);
