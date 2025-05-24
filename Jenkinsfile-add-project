@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'TAG', defaultValue: '', description: 'Project tag (e.g., Monitoring)')
+        string(name: 'TITLE', defaultValue: '', description: 'Project title')
+        text(name: 'DESCRIPTION', defaultValue: '', description: 'Project description')
+        string(name: 'STATS', defaultValue: '', description: 'Project stats (e.g., 1,500)')
+        text(name: 'CODE', defaultValue: '', description: 'Optional code snippet')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/dad1755/portfolio.git', branch: 'main'
+            }
+        }
+        stage('Add Project') {
+            steps {
+                sh '''
+                    python3 add_project.py "${TAG}" "${TITLE}" "${DESCRIPTION}" "${STATS}" "${CODE}"
+                '''
+            }
+        }
+        stage('Commit Changes') {
+            steps {
+                sh '''
+                    git config user.name "Jenkins"
+                    git config user.email "jenkins@ridergami.space"
+                    git add projects.json
+                    git commit -m "Add/Update project: ${TITLE}" || echo "No changes to commit"
+                    git push origin main
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    rsync -av --exclude='.git' . user@production-server:/path/to/webroot
+                '''
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Project added and site deployed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs for details.'
+        }
+    }
+}
