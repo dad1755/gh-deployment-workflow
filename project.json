@@ -1,0 +1,15 @@
+[
+  {
+    "tag": "Monitoring",
+    "title": "Prometheus & Grafana",
+    "description": "Deploy Prometheus and Grafana for system monitoring on 3 VM via Cockpit.",
+    "stats": "1,500"
+  },
+  {
+    "tag": "CI/CD",
+    "title": "Portfolio Website with CI/CD",
+    "description": "Designed and developed this portfolio website using HTML, Tailwind CSS, and JavaScript, with content generated via Grok.com. Hosted on a GitHub repository with Jenkins for automated CI/CD, enabling seamless updates and deployment to a production server.",
+    "stats": "1,500"
+  }
+  // Add other projects here
+]
